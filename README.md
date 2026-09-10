@@ -2,13 +2,23 @@
 
 Some Q1000K users see large ping spikes on the 10G Ethernet port, particularly with very small packets. In this investigation, changing to the 1G port substantially reduced those spikes. Independent inspection of an older official firmware image found that its 10G transmit routine lacks an explicit short-frame padding step that is present in its fiber transmit driver.
 
-**This repository contains a proposed source patch for vendor review, not a flashable firmware update. It has not been built against the vendor SDK or tested on this installation.**
+**This repository contains proposed source patches for vendor review, not a flashable firmware update. They have not been integrated into vendor firmware or tested on this installation.**
+
+**September 10 update:** an expanded [firmware search](FIRMWARE-SEARCH.md) found no obtainable image newer than QKX001-06.00.44.00, although QKX002-06.01.25.00 is documented in use. Review of the available image also produced two [additional script fixes](evidence/script-findings.md), with 51 passing offline checks. Their presence in newer firmware remains unverified.
+
+| Proposed patch | Purpose | Verification here |
+| --- | --- | --- |
+| [0001: HSGMII padding](patches/0001-pad-short-hsgmii-frames.patch) | Correct undersized-packet handling on the 10G transmit path; credited to James Hilliard | Older binary disassembly plus applicability to the published source excerpt; no firmware build or hardware test |
+| [0002: DHCP route precedence](patches/0002-honor-classless-route-precedence.patch) | Honor classless-route precedence and preserve off-subnet next-hop reachability | Applies to extracted script; before/after component regressions |
+| [0003: PON renewal status](patches/0003-refresh-status-on-pon-dhcp-renew.patch) | Match actual PON interface names when refreshing cached WAN status | Applies to extracted hook; before/after component regressions |
 
 ## Credit and what is new here
 
 [James Hilliard identified this issue and published the padding fix and experimental runtime workaround](https://github.com/jameshilliard/q1000k-hsgmii-pad). His reported hardware tests support the diagnosis. This repository credits and packages his proposed vendor change; it does not claim to have discovered the bug or independently tested his workaround.
 
 The additional contribution is independent, relocation-annotated disassembly of the original modules from provider-hosted firmware **QKX001-06.00.44.00**, with hashes and a comparison of the HSGMII and XPON transmit paths. The investigated installation reported **QKX002-06.01.25.00**; its exact binary was not obtained.
+
+The DHCP and renewal-hook findings and proposed changes were added during the subsequent offline review. They are distinct from the small-packet latency diagnosis and are not claimed to explain this installation's ping spikes.
 
 ## What the fix does
 
@@ -51,4 +61,4 @@ Please review the short-frame handling in the shipping HSGMII driver, confirm af
 
 ## License
 
-The proposed patch is adapted from James Hilliard's GPL-2.0-only project. Original contributions in this repository are also provided under GPL-2.0-only; see [LICENSE](LICENSE) and [NOTICE](NOTICE). Disassembly excerpts retain their original rights and are presented as technical evidence. No firmware images or kernel module binaries are distributed here.
+The HSGMII patch is adapted from James Hilliard's GPL-2.0-only project. Extracted script fixtures come from the firmware's GPL-2.0 netifd package. Original contributions in this repository are also provided under GPL-2.0-only; see [LICENSE](LICENSE) and [NOTICE](NOTICE). Disassembly excerpts retain their original rights and are presented as technical evidence. No firmware images or kernel module binaries are distributed here.

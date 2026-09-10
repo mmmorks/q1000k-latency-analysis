@@ -1,0 +1,28 @@
+--- a/lib/netifd/dhcp.script
++++ b/lib/netifd/dhcp.script
+@@ -7,6 +7,13 @@
+ set_classless_routes() {
+ 	local max=128
+ 	while [ -n "$1" -a -n "$2" -a $max -gt 0 ]; do
++		# Classless next hops need the same off-subnet reachability route
++		# as Router-option next hops. Do not rely on an ignored option 3.
++		if [ "$2" != "0.0.0.0" ]; then
++			local gw_net
++			eval "$(ipcalc.sh "$2/$mask")";gw_net="$NETWORK"
++			[ "$ip_net" != "$gw_net" ] && proto_add_ipv4_route "$2" 32 "" "$ip"
++		fi
+ 		proto_add_ipv4_route "${1%%/*}" "${1##*/}" "$2" "$ip"
+ 		max=$(($max-1))
+ 		shift 2
+@@ -22,7 +29,10 @@
+ 	eval "$(ipcalc.sh "$ip/$mask")";ip_net="$NETWORK"
+ 
+ 	local i
+-	for i in $router; do
++	local dhcp_routers="$router"
++	# RFC 3442: option 121 takes precedence over the Router option.
++	[ -n "$staticroutes" ] && dhcp_routers=
++	for i in $dhcp_routers; do
+ 		local gw_net
+ 		eval "$(ipcalc.sh "$i/$mask")";gw_net="$NETWORK"
+ 

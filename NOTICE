@@ -7,6 +7,11 @@ James Hilliard is credited for the published diagnosis, proposed vendor
 correction, and experimental runtime workaround. This repository's independent
 contribution is the older-firmware binary comparison and supporting report.
 
+Additional DHCP and renewal-hook patches and their regression harness were
+developed during the independent offline review. Script fixtures retain their
+original rights and exact content. The firmware's netifd package list owns
+those files, and its control metadata identifies License: GPL-2.0.
+
 Disassembly excerpts are from original vendor modules in the provider-hosted
 QKX001-06.00.44.00 firmware. The inspected modules declare GPL v2. No ownership
 of the original vendor code is claimed and no firmware binaries are included.

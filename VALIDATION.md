@@ -1,5 +1,7 @@
 # Vendor integration and validation
 
+This section describes the HSGMII driver patch. The additional DHCP and PON-status patches have separate [findings, applicability limits](evidence/script-findings.md) and [offline test results](evidence/script-test-results.md). Run their regressions with `python3 tests/test_firmware_scripts.py`. Both apply to the extracted older firmware files; verify the current vendor copies before integration.
+
 ## Proposed change
 
 Apply the logic in `patches/0001-pad-short-hsgmii-frames.patch` to the actual SDK copy of `hsgmii_lan_mac.c:hsgmii_lan_mac_tx()`. Placement is after the oversize rejection and before `update_xsi_sw_mib()` and the QDMA transmit handoff, following the source excerpt published by James Hilliard.

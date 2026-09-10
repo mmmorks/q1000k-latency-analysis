@@ -1,0 +1,10 @@
+# logger -t udhcpc-user "udhcpc.user.d/00-dhcp-update - $1 ${INTERFACE} ${interface}"
+dir=/tmp/ifstatus
+
+#Trigger ifstatus for PON WAN DHCP renew as netifd doesn't do it for PON WAN
+if [ "$1" == "renew" ]; then
+	if [[ "${INTERFACE}" == "wan" ]] && [[ "${interface}" == "pon*" ]]; then
+		logger -t udhcpc-user "PON ${interface} WAN renew, triggering wan_status update"
+		ifstatus ${INTERFACE} > ${dir}/${INTERFACE}_status
+	fi
+fi

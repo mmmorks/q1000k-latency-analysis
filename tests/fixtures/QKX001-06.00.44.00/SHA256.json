@@ -1,0 +1,5 @@
+{
+  "lib/netifd/dhcp.script": "7426049620ae2bca29924ec829802074a06d3d279e1bc7c54383b31c7cdc5cf5",
+  "lib/netifd/proto/dhcp.sh": "528d887726ba48e550334e7b8b9094a2c3f92b59e58498bc6173085cce1c87e4",
+  "etc/udhcpc.user.d/00-dhcp-update": "028af32b3d9235522fba0883a0fe818a72776bba48626f38daa2171ab2141216"
+}
