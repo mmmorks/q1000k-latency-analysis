@@ -1,0 +1,444 @@
+hsgmii_lan.ko from QKX001-06.00.44.00
+SHA256: 798ac4be2da849e10dcbf007aea24ac9e64642ce463816c485c0c2c5f6ac6254
+AArch64 disassembly; addresses are section-relative, not runtime addresses.
+
+.text 0xa80 through 0xb44 (exclusive):
+00000a80  cbz      w2, #0xacc
+00000a84  cmp      w2, #1
+00000a88  b.ne     #0xac8
+00000a8c  ldr      w2, [x1, #0x70]
+00000a90  mov      w4, #0x40
+00000a94  ldr      w3, [x0, #8]
+00000a98  cmp      w2, w4
+00000a9c  csel     w2, w2, w4, hs
+00000aa0  add      w2, w3, w2
+00000aa4  str      w2, [x0, #8]
+00000aa8  ldr      x2, [x1, #0x270]
+00000aac  ldrb     w1, [x2]
+00000ab0  cmp      w1, #0xff
+00000ab4  b.eq     #0xb0c
+00000ab8  tbnz     w1, #0, #0xb18
+00000abc  ldr      w1, [x0, #0xc]
+00000ac0  add      w1, w1, #1
+00000ac4  str      w1, [x0, #0xc]
+00000ac8  ret
+00000acc  ldr      w2, [x1, #0x70]
+00000ad0  mov      w4, #0x40
+00000ad4  ldr      w3, [x0, #0x20]
+00000ad8  cmp      w2, w4
+00000adc  csel     w2, w2, w4, hs
+00000ae0  add      w2, w3, w2
+00000ae4  str      w2, [x0, #0x20]
+00000ae8  ldr      x2, [x1, #0x270]
+00000aec  ldrb     w1, [x2]
+00000af0  cmp      w1, #0xff
+00000af4  b.eq     #0xb28
+00000af8  tbnz     w1, #0, #0xb34
+00000afc  ldr      w1, [x0, #0x24]
+00000b00  add      w1, w1, #1
+00000b04  str      w1, [x0, #0x24]
+00000b08  ret
+00000b0c  ldrb     w1, [x2, #1]
+00000b10  cmp      w1, #0xff
+00000b14  b.eq     #0xb84
+00000b18  ldr      w1, [x0, #0x10]
+00000b1c  add      w1, w1, #1
+00000b20  str      w1, [x0, #0x10]
+00000b24  ret
+00000b28  ldrb     w1, [x2, #1]
+00000b2c  cmp      w1, #0xff
+00000b30  b.eq     #0xb44
+00000b34  ldr      w1, [x0, #0x28]
+00000b38  add      w1, w1, #1
+00000b3c  str      w1, [x0, #0x28]
+00000b40  ret
+
+.text 0xcd0 through 0xe50 (exclusive):
+00000cd0  stp      x29, x30, [sp, #-0x140]!
+00000cd4  mov      x2, #0x100
+00000cd8  mov      x29, sp
+00000cdc  stp      x19, x20, [sp, #0x10]
+00000ce0  mrs      x19, sp_el0
+00000ce4  mov      x20, x1
+00000ce8  str      x21, [sp, #0x20]
+00000cec  mov      x21, x0
+00000cf0  mov      w1, #0
+00000cf4  ldr      x0, [x19, #0x408]
+00000cf8  str      x0, [sp, #0x138]
+00000cfc  mov      x0, #0
+00000d00  add      x0, sp, #0x38
+00000d04  bl       #0xd04 ; relocation memset +0x0
+00000d08  mov      w3, #0x52
+00000d0c  mov      w1, #0
+00000d10  add      x2, sp, #0x38
+00000d14  mov      w0, #0x13
+00000d18  str      w3, [sp, #0x38]
+00000d1c  str      x21, [sp, #0x70]
+00000d20  bl       #0xd20 ; relocation __ECNT_HOOK +0x0
+00000d24  ldrb     w0, [sp, #0x9c]
+00000d28  strb     w0, [x20]
+00000d2c  ldr      x1, [sp, #0x138]
+00000d30  ldr      x0, [x19, #0x408]
+00000d34  eor      x0, x1, x0
+00000d38  cbnz     x0, #0xd4c
+00000d3c  ldp      x19, x20, [sp, #0x10]
+00000d40  ldr      x21, [sp, #0x20]
+00000d44  ldp      x29, x30, [sp], #0x140
+00000d48  ret
+00000d4c  bl       #0xd4c ; relocation __stack_chk_fail +0x0
+00000d50  stp      x29, x30, [sp, #-0x140]!
+00000d54  mov      x2, #0x100
+00000d58  mov      x29, sp
+00000d5c  stp      x19, x20, [sp, #0x10]
+00000d60  mrs      x19, sp_el0
+00000d64  mov      x20, x1
+00000d68  str      x21, [sp, #0x20]
+00000d6c  mov      x21, x0
+00000d70  mov      w1, #0
+00000d74  ldr      x0, [x19, #0x408]
+00000d78  str      x0, [sp, #0x138]
+00000d7c  mov      x0, #0
+00000d80  add      x0, sp, #0x38
+00000d84  bl       #0xd84 ; relocation memset +0x0
+00000d88  mov      w3, #0x53
+00000d8c  mov      w1, #0
+00000d90  add      x2, sp, #0x38
+00000d94  mov      w0, #0x13
+00000d98  str      w3, [sp, #0x38]
+00000d9c  str      x21, [sp, #0x70]
+00000da0  bl       #0xda0 ; relocation __ECNT_HOOK +0x0
+00000da4  ldrb     w0, [sp, #0x9e]
+00000da8  strb     w0, [x20]
+00000dac  ldr      x1, [sp, #0x138]
+00000db0  ldr      x0, [x19, #0x408]
+00000db4  eor      x0, x1, x0
+00000db8  cbnz     x0, #0xdcc
+00000dbc  ldp      x19, x20, [sp, #0x10]
+00000dc0  ldr      x21, [sp, #0x20]
+00000dc4  ldp      x29, x30, [sp], #0x140
+00000dc8  ret
+00000dcc  bl       #0xdcc ; relocation __stack_chk_fail +0x0
+00000dd0  stp      x29, x30, [sp, #-0x140]!
+00000dd4  mov      x2, #0x100
+00000dd8  mov      x29, sp
+00000ddc  stp      x19, x20, [sp, #0x10]
+00000de0  mrs      x19, sp_el0
+00000de4  mov      x20, x1
+00000de8  str      x21, [sp, #0x20]
+00000dec  mov      x21, x0
+00000df0  mov      w1, #0
+00000df4  ldr      x0, [x19, #0x408]
+00000df8  str      x0, [sp, #0x138]
+00000dfc  mov      x0, #0
+00000e00  add      x0, sp, #0x38
+00000e04  bl       #0xe04 ; relocation memset +0x0
+00000e08  mov      w3, #0x54
+00000e0c  mov      w1, #0
+00000e10  add      x2, sp, #0x38
+00000e14  mov      w0, #0x13
+00000e18  str      w3, [sp, #0x38]
+00000e1c  str      x21, [sp, #0x70]
+00000e20  bl       #0xe20 ; relocation __ECNT_HOOK +0x0
+00000e24  ldrb     w0, [sp, #0x9f]
+00000e28  strb     w0, [x20]
+00000e2c  ldr      x1, [sp, #0x138]
+00000e30  ldr      x0, [x19, #0x408]
+00000e34  eor      x0, x1, x0
+00000e38  cbnz     x0, #0xe4c
+00000e3c  ldp      x19, x20, [sp, #0x10]
+00000e40  ldr      x21, [sp, #0x20]
+00000e44  ldp      x29, x30, [sp], #0x140
+00000e48  ret
+00000e4c  bl       #0xe4c ; relocation __stack_chk_fail +0x0
+
+.text 0x1c30 through 0x1f74 (exclusive):
+00001c30  stp      x29, x30, [sp, #-0xa0]!
+00001c34  adrp     x3, #0x1000 ; relocation hsgmii_pcie0_itf +0x0
+00001c38  adrp     x2, #0x1000 ; relocation .data +0x60
+00001c3c  mov      x29, sp
+00001c40  stp      x19, x20, [sp, #0x10]
+00001c44  mov      x20, x1
+00001c48  mov      w4, #0x7f
+00001c4c  ldr      x1, [x3] ; relocation hsgmii_pcie0_itf +0x0
+00001c50  mov      w3, #0x1f
+00001c54  stp      x21, x22, [sp, #0x20]
+00001c58  mov      x19, x0
+00001c5c  ldrsw    x21, [x2] ; relocation .data +0x60
+00001c60  mov      x0, x20
+00001c64  stp      x23, x24, [sp, #0x30]
+00001c68  mov      x2, x21
+00001c6c  str      x25, [sp, #0x40]
+00001c70  stp      w4, w3, [sp, #0x54]
+00001c74  str      w3, [sp, #0x5c]
+00001c78  str      xzr, [sp, #0x60]
+00001c7c  stp      xzr, xzr, [sp, #0x68]
+00001c80  bl       #0x1c80 ; relocation strncmp +0x0
+00001c84  cbnz     w0, #0x1dec
+00001c88  mov      w23, w0
+00001c8c  adrp     x0, #0x1000 ; relocation .bss +0x0
+00001c90  mov      w25, #0x7284
+00001c94  mov      w24, #3
+00001c98  ldr      x22, [x0] ; relocation .bss +0x0
+00001c9c  mov      w20, #0xa
+00001ca0  mov      w21, #4
+00001ca4  ldr      w3, [x19, #0x70]
+00001ca8  mov      w4, #0xffff
+00001cac  cmp      w3, w4
+00001cb0  b.hi     #0x1e94
+00001cb4  ldrb     w0, [x22, #0x38]
+00001cb8  cbz      w0, #0x1ccc
+00001cbc  mov      x1, x19
+00001cc0  mov      x0, x22
+00001cc4  mov      w2, #0
+00001cc8  bl       #0xa80
+00001ccc  mov      x0, x19
+00001cd0  add      x1, sp, #0x54
+00001cd4  stp      xzr, xzr, [sp, #0x68]
+00001cd8  bl       #0xcd0
+00001cdc  ldr      w0, [sp, #0x54]
+00001ce0  strb     w0, [sp, #0x68]
+00001ce4  mov      w2, #0xff
+00001ce8  movk     w2, #0xff84, lsl #16
+00001cec  lsl      w20, w20, #8
+00001cf0  ldr      w1, [sp, #0x68]
+00001cf4  orr      w20, w20, w21, lsl #13
+00001cf8  mov      w0, w23
+00001cfc  strh     w25, [sp, #0x6e]
+00001d00  and      w1, w1, w2
+00001d04  lsl      x24, x24, #0x34
+00001d08  orr      w20, w20, w1
+00001d0c  str      w20, [sp, #0x68]
+00001d10  adrp     x23, #0x1000 ; relocation hsgmii_lan_dbg_level +0x0
+00001d14  bl       #0x1d14 ; relocation hsgmii_lan_set_dstq_mode +0x0
+00001d18  ldr      w2, [sp, #0x68]
+00001d1c  mov      w4, w0
+00001d20  ldr      w3, [sp, #0x54]
+00001d24  add      x1, sp, #0x58
+00001d28  mov      x0, x19
+00001d2c  bfi      w2, w4, #0x1c, #1
+00001d30  str      w2, [sp, #0x68]
+00001d34  ubfiz    x3, x3, #0x38, #7
+00001d38  ldr      x2, [sp, #0x68]
+00001d3c  ubfx     x2, x2, #8, #5
+00001d40  orr      x2, x24, x2, lsl #3
+00001d44  orr      x2, x2, x3
+00001d48  str      x2, [sp, #0x60]
+00001d4c  bl       #0xd50
+00001d50  add      x1, sp, #0x5c
+00001d54  mov      x0, x19
+00001d58  bl       #0xdd0
+00001d5c  ldp      w1, w2, [sp, #0x58]
+00001d60  ldr      w0, [sp, #0x64]
+00001d64  and      w2, w2, #0x3f
+00001d68  ubfiz    w1, w1, #6, #5
+00001d6c  and      w0, w0, #0xfffff800
+00001d70  orr      w1, w1, w2
+00001d74  and      w0, w0, #0xfff07fff
+00001d78  orr      w21, w1, w21, lsl #15
+00001d7c  ldrb     w1, [x23] ; relocation hsgmii_lan_dbg_level +0x0
+00001d80  orr      w21, w21, w0
+00001d84  str      w21, [sp, #0x64]
+00001d88  cmp      w1, #2
+00001d8c  b.hi     #0x1f10
+00001d90  ldr      x5, [sp, #0x60]
+00001d94  add      x3, sp, #0x68
+00001d98  mov      w6, #0xa
+00001d9c  mov      w4, #0xffff
+00001da0  add      x2, sp, #0x78
+00001da4  mov      w1, #0
+00001da8  mov      w0, #0x12
+00001dac  str      w6, [sp, #0x78]
+00001db0  stp      x19, x5, [sp, #0x80]
+00001db4  str      w4, [sp, #0x90]
+00001db8  str      x3, [sp, #0x98]
+00001dbc  bl       #0x1dbc ; relocation __ECNT_HOOK +0x0
+00001dc0  cmn      w0, #1
+00001dc4  b.eq     #0x1eac
+00001dc8  ldr      w0, [sp, #0x7c]
+00001dcc  cbnz     w0, #0x1eac
+00001dd0  mov      w0, #0
+00001dd4  ldp      x19, x20, [sp, #0x10]
+00001dd8  ldp      x21, x22, [sp, #0x20]
+00001ddc  ldp      x23, x24, [sp, #0x30]
+00001de0  ldr      x25, [sp, #0x40]
+00001de4  ldp      x29, x30, [sp], #0xa0
+00001de8  ret
+00001dec  adrp     x1, #0x1000 ; relocation hsgmii_pcie1_itf +0x0
+00001df0  mov      x2, x21
+00001df4  mov      x0, x20
+00001df8  ldr      x1, [x1] ; relocation hsgmii_pcie1_itf +0x0
+00001dfc  bl       #0x1dfc ; relocation strncmp +0x0
+00001e00  cbnz     w0, #0x1e24
+00001e04  adrp     x0, #0x1000 ; relocation .bss +0x8
+00001e08  mov      w25, #0x7284
+00001e0c  mov      w24, #3
+00001e10  mov      w20, #0xb
+00001e14  ldr      x22, [x0] ; relocation .bss +0x8
+00001e18  mov      w21, #5
+00001e1c  mov      w23, #1
+00001e20  b        #0x1ca4
+00001e24  adrp     x1, #0x1000 ; relocation hsgmii_usb_itf +0x0
+00001e28  mov      x2, x21
+00001e2c  mov      x0, x20
+00001e30  ldr      x1, [x1] ; relocation hsgmii_usb_itf +0x0
+00001e34  bl       #0x1e34 ; relocation strncmp +0x0
+00001e38  cbz      w0, #0x1e74
+00001e3c  adrp     x1, #0x1000 ; relocation hsgmii_eth_itf +0x0
+00001e40  mov      x2, x21
+00001e44  mov      x0, x20
+00001e48  ldr      x1, [x1] ; relocation hsgmii_eth_itf +0x0
+00001e4c  bl       #0x1e4c ; relocation strncmp +0x0
+00001e50  cbnz     w0, #0x1ee4
+00001e54  adrp     x0, #0x1000 ; relocation .bss +0x18
+00001e58  mov      w25, #0x729a
+00001e5c  mov      w24, #9
+00001e60  mov      w20, #0xd
+00001e64  ldr      x22, [x0] ; relocation .bss +0x18
+00001e68  mov      w21, #0
+00001e6c  mov      w23, #4
+00001e70  b        #0x1ca4
+00001e74  adrp     x0, #0x1000 ; relocation .bss +0x10
+00001e78  mov      w25, #0x729a
+00001e7c  mov      w24, #9
+00001e80  mov      w20, #0xc
+00001e84  ldr      x22, [x0] ; relocation .bss +0x10
+00001e88  mov      w21, #1
+00001e8c  mov      w23, #2
+00001e90  b        #0x1ca4
+00001e94  adrp     x0, #0x1000 ; relocation .rodata.str1.8 +0x268
+00001e98  adrp     x1, #0x1000 ; relocation .LC7 +0x59
+00001e9c  add      x0, x0, #0 ; relocation .rodata.str1.8 +0x268
+00001ea0  add      x1, x1, #0 ; relocation .LC7 +0x59
+00001ea4  mov      w2, #0x495
+00001ea8  bl       #0x1ea8 ; relocation printk +0x0
+00001eac  mov      x0, x19
+00001eb0  mov      w1, #1
+00001eb4  bl       #0x1eb4 ; relocation __dev_kfree_skb_any +0x0
+00001eb8  ldp      w1, w0, [x22, #0x30]
+00001ebc  add      w1, w1, #1
+00001ec0  add      w0, w0, #1
+00001ec4  stp      w1, w0, [x22, #0x30]
+00001ec8  mov      w0, #0
+00001ecc  ldp      x19, x20, [sp, #0x10]
+00001ed0  ldp      x21, x22, [sp, #0x20]
+00001ed4  ldp      x23, x24, [sp, #0x30]
+00001ed8  ldr      x25, [sp, #0x40]
+00001edc  ldp      x29, x30, [sp], #0xa0
+00001ee0  ret
+00001ee4  mov      x3, x20
+00001ee8  mov      w2, #0x48d
+00001eec  adrp     x0, #0x1000 ; relocation .rodata.str1.8 +0x238
+00001ef0  adrp     x1, #0x1000 ; relocation .LC7 +0x59
+00001ef4  add      x0, x0, #0 ; relocation .rodata.str1.8 +0x238
+00001ef8  add      x1, x1, #0 ; relocation .LC7 +0x59
+00001efc  bl       #0x1efc ; relocation printk +0x0
+00001f00  mov      x0, x19
+00001f04  mov      w1, #1
+00001f08  bl       #0x1f08 ; relocation __dev_kfree_skb_any +0x0
+00001f0c  b        #0x1dd0
+00001f10  ldr      x3, [sp, #0x60]
+00001f14  adrp     x0, #0x1000 ; relocation .rodata.str1.8 +0x2a8
+00001f18  adrp     x20, #0x1000 ; relocation .LC7 +0x59
+00001f1c  add      x0, x0, #0 ; relocation .rodata.str1.8 +0x2a8
+00001f20  add      x1, x20, #0 ; relocation .LC7 +0x59
+00001f24  mov      w2, #0x4b8
+00001f28  ubfx     w5, w3, #0xe, #0x10
+00001f2c  ubfx     x4, x3, #0x34, #4
+00001f30  ubfx     w3, w3, #3, #5
+00001f34  bl       #0x1f34 ; relocation printk +0x0
+00001f38  ldrb     w0, [x23] ; relocation hsgmii_lan_dbg_level +0x0
+00001f3c  cmp      w0, #2
+00001f40  b.ls     #0x1d90
+00001f44  ldrh     w5, [sp, #0x6e]
+00001f48  add      x1, x20, #0 ; relocation .LC7 +0x59
+00001f4c  ldr      x3, [sp, #0x68]
+00001f50  adrp     x0, #0x1000 ; relocation .rodata.str1.8 +0x2e0
+00001f54  mov      w2, #0x4b9
+00001f58  add      x0, x0, #0 ; relocation .rodata.str1.8 +0x2e0
+00001f5c  ubfx     w7, w3, #8, #5
+00001f60  ubfx     w6, w3, #0x1c, #1
+00001f64  ubfx     w4, w3, #0x1a, #1
+00001f68  ubfx     w3, w3, #0x13, #4
+00001f6c  bl       #0x1f6c ; relocation printk +0x0
+00001f70  b        #0x1d90
+
+xpon.ko from QKX001-06.00.44.00
+SHA256: 4eb54a2ac366a5154c96a464acc1e7fce02d23fddcbb8d0d3bca508e0bdfdd84
+AArch64 disassembly; addresses are section-relative, not runtime addresses.
+
+.text 0x51ba0 through 0x51bc8 (exclusive):
+00051ba0  stp      x29, x30, [sp, #-0x20]!
+00051ba4  mov      x29, sp
+00051ba8  str      x0, [sp, #0x18]
+00051bac  str      w1, [sp, #0x14]
+00051bb0  mov      w2, #1
+00051bb4  ldr      w1, [sp, #0x14]
+00051bb8  ldr      x0, [sp, #0x18]
+00051bbc  bl       #0x51bbc ; relocation __skb_pad +0x0
+00051bc0  ldp      x29, x30, [sp], #0x20
+00051bc4  ret
+
+.text 0x51dbc through 0x51e20 (exclusive):
+00051dbc  stp      x29, x30, [sp, #-0x30]!
+00051dc0  mov      x29, sp
+00051dc4  str      x0, [sp, #0x18]
+00051dc8  str      w1, [sp, #0x14]
+00051dcc  ldr      x0, [sp, #0x18]
+00051dd0  ldr      w0, [x0, #0x70]
+00051dd4  str      w0, [sp, #0x2c]
+00051dd8  ldr      w1, [sp, #0x2c]
+00051ddc  ldr      w0, [sp, #0x14]
+00051de0  cmp      w1, w0
+00051de4  cset     w0, hs
+00051de8  and      w0, w0, #0xff
+00051dec  and      x0, x0, #0xff
+00051df0  cmp      x0, #0
+00051df4  b.eq     #0x51e00
+00051df8  mov      w0, #0
+00051dfc  b        #0x51e18
+00051e00  ldr      w1, [sp, #0x14]
+00051e04  ldr      w0, [sp, #0x2c]
+00051e08  sub      w0, w1, w0
+00051e0c  mov      w1, w0
+00051e10  ldr      x0, [sp, #0x18]
+00051e14  bl       #0x51ba0
+00051e18  ldp      x29, x30, [sp], #0x30
+00051e1c  ret
+
+.text 0x53aec through 0x53b7c (exclusive):
+00053aec  ldr      x0, [sp, #0x18]
+00053af0  ldr      w0, [x0, #0x70]
+00053af4  cmp      w0, #0x3b
+00053af8  cset     w0, ls
+00053afc  and      w0, w0, #0xff
+00053b00  and      x0, x0, #0xff
+00053b04  cmp      x0, #0
+00053b08  b.eq     #0x53b7c
+00053b0c  mov      w1, #0x3c
+00053b10  ldr      x0, [sp, #0x18]
+00053b14  bl       #0x51dbc
+00053b18  cmp      w0, #0
+00053b1c  b.eq     #0x53b60
+00053b20  str      xzr, [sp, #0x18]
+00053b24  adrp     x0, #0x53000 ; relocation drop_print_flag +0x0
+00053b28  add      x0, x0, #0 ; relocation drop_print_flag +0x0
+00053b2c  ldr      w0, [x0]
+00053b30  cmp      w0, #0
+00053b34  b.eq     #0x53ff0
+00053b38  mov      w4, #0x4cc
+00053b3c  adrp     x0, #0x53000 ; relocation .rodata +0x1d70
+00053b40  add      x3, x0, #0 ; relocation .rodata +0x1d70
+00053b44  mov      w2, #0x4cc
+00053b48  adrp     x0, #0x53000 ; relocation .rodata +0x1d70
+00053b4c  add      x1, x0, #0 ; relocation .rodata +0x1d70
+00053b50  adrp     x0, #0x53000 ; relocation .rodata.str1.8 +0xe908
+00053b54  add      x0, x0, #0 ; relocation .rodata.str1.8 +0xe908
+00053b58  bl       #0x53b58 ; relocation printk +0x0
+00053b5c  b        #0x53ff0
+00053b60  ldr      x0, [sp, #0x18]
+00053b64  ldr      w0, [x0, #0x70]
+00053b68  mov      w1, #0x3c
+00053b6c  sub      w0, w1, w0
+00053b70  mov      w1, w0
+00053b74  ldr      x0, [sp, #0x18]
+00053b78  bl       #0x53b78 ; relocation skb_put +0x0

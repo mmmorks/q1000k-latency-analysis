@@ -1,0 +1,15 @@
+Proposed HSGMII padding patch:
+Adapted from James Hilliard's q1000k-hsgmii-pad README, GPL-2.0-only.
+https://github.com/jameshilliard/q1000k-hsgmii-pad
+Source revision: a9b6a1472a732a34a2d33ec37f6f83191774fa8a
+
+James Hilliard is credited for the published diagnosis, proposed vendor
+correction, and experimental runtime workaround. This repository's independent
+contribution is the older-firmware binary comparison and supporting report.
+
+Disassembly excerpts are from original vendor modules in the provider-hosted
+QKX001-06.00.44.00 firmware. The inspected modules declare GPL v2. No ownership
+of the original vendor code is claimed and no firmware binaries are included.
+
+Original repository contributions: Copyright (c) 2026 remnantx.
+SPDX-License-Identifier: GPL-2.0-only

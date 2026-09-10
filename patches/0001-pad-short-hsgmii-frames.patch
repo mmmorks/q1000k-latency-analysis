@@ -1,0 +1,16 @@
+--- a/hsgmii_lan_mac.c
++++ b/hsgmii_lan_mac.c
+@@ -9,4 +9,13 @@
+ 	}
+ #endif
+ 
++	if (unlikely(skb->len < ETH_ZLEN)) {
++		if (skb_padto(skb, ETH_ZLEN)) {
++			hsgmii_p->xsiStat.outErrors++;
++			hsgmii_p->xsiStat.outDrops++;
++			return NETDEV_TX_OK;
++		}
++		skb_put(skb, ETH_ZLEN - skb->len);
++	}
++
+ 	update_xsi_sw_mib(hsgmii_p, skb, XSI_TX);
