@@ -16,5 +16,11 @@ Disassembly excerpts are from original vendor modules in the provider-hosted
 QKX001-06.00.44.00 firmware. The inspected modules declare GPL v2. No ownership
 of the original vendor code is claimed and no firmware binaries are included.
 
+Proposed frame-engine padding patch (0004):
+The added lines are the Airoha EN7581 SDK's own code, verbatim from the public
+SDK at https://github.com/lotusmomo/airoha_sdk revision
+32b5aa356c2406edef8806aaf75451ff0a5286f2 (private/fe/fe.c, GPL-2.0). No
+ownership of the vendor code is claimed.
+
 Original repository contributions: Copyright (c) 2026 remnantx.
 SPDX-License-Identifier: GPL-2.0-only

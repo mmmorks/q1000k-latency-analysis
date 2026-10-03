@@ -8,9 +8,10 @@ Some Q1000K users see large ping spikes on the 10G Ethernet port, particularly w
 
 | Proposed patch | Purpose | Verification here |
 | --- | --- | --- |
-| [0001: HSGMII padding](patches/0001-pad-short-hsgmii-frames.patch) | Correct undersized-packet handling on the 10G transmit path; credited to James Hilliard | Older binary disassembly plus applicability to the published source excerpt; no firmware build or hardware test |
+| [0001: HSGMII padding](patches/0001-pad-short-hsgmii-frames.patch) | Correct undersized-packet handling on the 10G transmit path; credited to James Hilliard | Older binary disassembly plus applicability to the published source excerpt; the same pad, built into `hsgmii_lan.ko` from source matching the stock QKX001 module, removes the delay on QKX001 hardware ([tests](evidence/short-frame-pad-tests.md)) |
 | [0002: DHCP route precedence](patches/0002-honor-classless-route-precedence.patch) | Honor classless-route precedence and preserve off-subnet next-hop reachability | Applies to extracted script; before/after component regressions |
 | [0003: PON renewal status](patches/0003-refresh-status-on-pon-dhcp-renew.patch) | Match actual PON interface names when refreshing cached WAN status | Applies to extracted hook; before/after component regressions |
+| [0004: FE hardware padding](patches/0004-enable-fe-gdma-hsgmii-padding.patch) | Restore the SDK's frame-engine pad on the GDMA ports feeding HSGMII (GDMA4_FWD_CFG bit 28), which also covers PPE-forwarded frames | Vendor lines verbatim from the public SDK; bit is clear on stock QKX001, and setting it removes the delay on QKX001 hardware with no throughput cost ([tests](evidence/short-frame-pad-tests.md)) |
 
 ## Credit and what is new here
 

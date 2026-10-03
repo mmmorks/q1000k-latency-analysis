@@ -1,0 +1,38 @@
+--- a/private/fe/fe.c
++++ b/private/fe/fe.c
+@@ -2335,6 +2335,25 @@
+ 	return 0 ;
+ }
+ 
++int feSetGdma2PadEnable(void)
++{
++	if(SUPPORT_GDMA2)
++		IO_SBITS(GDMA2_FWD_CFG, GDMA_PAD_EN_BIT);
++
++	return 0 ;
++}
++
++int feSetGdma3Gdma4PadEnable(void)
++{
++	if(SUPPORT_GDMA3)
++		IO_SBITS(GDMA3_FWD_CFG, GDMA_PAD_EN_BIT);
++
++	if(SUPPORT_GDMA4)
++		IO_SBITS(GDMA4_FWD_CFG, GDMA_PAD_EN_BIT);
++
++	return 0 ;
++}
++
+ int feSetTunTblCfg(unsigned int index, unsigned int offset, unsigned int type)
+ {
+ 
+@@ -6427,6 +6446,9 @@
+ 		feSetAssembleForcePort(0, ASSEM_FP_NBQ); /* QDMA LAN, RX Ring-22 */
+ 	}
+ 
++	feSetGdma2PadEnable();
++	feSetGdma3Gdma4PadEnable(); /* Enable padding before sending to HSGMII, otherwise it may cause delay */
++
+ #if defined(TCSUPPORT_CPU_EN7527) || defined(TCSUPPORT_CPU_EN7516) || defined(TCSUPPORT_CPU_EN7580) || defined(TCSUPPORT_CPU_EN7523)
+ 	/* set rx queue for lan->wifi traffic to Q1 */
+ 	/* CDMA1_CRSN_QSEL */
